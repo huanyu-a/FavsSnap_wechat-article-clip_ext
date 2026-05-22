@@ -1,0 +1,6 @@
+.vercel
+node_modules
+.env.development.local
+.claude/
+.git/
+extension/

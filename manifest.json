@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "FavsSnap — 微信文章剪藏",
+  "version": "1.0.0",
+  "description": "将微信公众号文章一键转为 Markdown + 本地图片，支持批量剪藏。",
+  "icons": {
+    "16": "icon-16.png",
+    "32": "icon-32.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  },
+  "action": {
+    "default_title": "FavsSnap — 微信文章剪藏"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html",
+  "permissions": [
+    "sidePanel",
+    "storage",
+    "scripting",
+    "activeTab",
+    "tabs",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "https://mp.weixin.qq.com/*",
+    "https://*.qpic.cn/*"
+  ],
+  "commands": {
+    "clip-current-page": {
+      "description": "剪藏当前页面"
+    }
+  }
+}

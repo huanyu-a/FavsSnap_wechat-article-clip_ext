@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FavsSnap 设置</title>
+<style>
+  :root {
+    --bg: #f0faf5;
+    --surface: #ffffff;
+    --border: #c5e3d1;
+    --text: #2d3a33;
+    --text-dim: #7a9a8a;
+    --accent: #3bb88a;
+    --accent-hover: #2ea077;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Microsoft YaHei UI', 'PingFang SC', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+  }
+
+  .settings-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  h1 {
+    font-size: 20px;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+
+  .field {
+    margin-bottom: 20px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .field .desc {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+
+  .current-dir {
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 500;
+    padding: 8px 12px;
+    background: #f0faf5;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+
+  .current-dir.empty {
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+
+  .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 28px;
+  }
+
+  button {
+    padding: 10px 24px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    cursor: pointer;
+    background: var(--surface);
+    color: var(--text);
+    transition: background 0.15s;
+  }
+
+  button:hover { background: #e8f5ee; }
+
+  button.primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+
+  button.primary:hover { background: var(--accent-hover); }
+
+  .toast {
+    margin-top: 16px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    display: none;
+  }
+
+  .toast.success {
+    display: block;
+    background: #d4f0e4;
+    color: #2d6a4f;
+  }
+</style>
+</head>
+<body>
+
+<div class="settings-card">
+  <h1>FavsSnap 设置</h1>
+
+  <div class="field">
+    <label>本地保存目录</label>
+    <p class="desc">文章和图片将直接保存到你选择的本地文件夹中</p>
+    <div id="current-dir" class="current-dir empty">未设置</div>
+  </div>
+
+  <div class="actions">
+    <button class="primary" id="select-btn">选择文件夹</button>
+    <button id="clear-btn">清除设置</button>
+  </div>
+
+  <div class="toast" id="toast">设置已保存</div>
+</div>
+
+<script src="db.js"></script>
+<script src="options.js"></script>
+</body>
+</html>

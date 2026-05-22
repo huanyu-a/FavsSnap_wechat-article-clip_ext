@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>FavsSnap</title><style>
+:root{
+  --canvas:#f6faf7;
+  --surface:#ffffff;
+  --surface-card:#f1f8f3;
+  --surface-dark:#1b2d25;
+  --border:#d4e8db;
+  --border-soft:#e3efe6;
+  --ink:#1a1f1c;
+  --body:#3b423d;
+  --muted:#6a736c;
+  --muted-soft:#8c948b;
+  --accent:#3bb88a;
+  --accent-hover:#2ea077;
+  --accent-light:#dbf5e8;
+  --green:#2d8c5a;
+  --red:#d44a4a;
+  --yellow:#c8921e;
+  --blue:#4a90d9;
+  --peach:#d47a3c;
+  --radius-sm:6px;
+  --radius-md:8px;
+  --radius-lg:12px;
+  --radius-xl:16px;
+  --space-xs:8px;
+  --space-sm:12px;
+  --space-md:16px;
+  --space-lg:24px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  font-size:14px;color:var(--body);background:var(--canvas);line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+#app{padding:24px 18px;display:flex;flex-direction:column;gap:28px}
+
+header{display:flex;align-items:center;gap:10px;padding-bottom:2px}
+.logo{font-size:20px;line-height:1}
+.brand{font-family:Georgia,"Times New Roman",serif;font-size:20px;font-weight:400;color:var(--ink);letter-spacing:-0.3px}
+.subtitle{font-size:11px;color:var(--muted-soft);font-weight:500;letter-spacing:0.5px;text-transform:uppercase}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-md)}
+.card-label{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:0.3px;text-transform:uppercase;margin-bottom:10px}
+.hint{font-weight:400;color:var(--muted-soft);font-size:11px;margin-left:6px;text-transform:none;letter-spacing:0}
+.hidden{display:none!important}
+
+#setup-card{text-align:center;padding:var(--space-lg) var(--space-md)}
+#setup-card h3{font-family:Georgia,"Times New Roman",serif;color:var(--ink);font-size:18px;font-weight:400;margin-bottom:4px;letter-spacing:-0.2px}
+#setup-card p{color:var(--muted);font-size:13px;margin-bottom:20px}
+.card-icon{font-size:28px;margin-bottom:10px;opacity:.7}
+.path-hint{color:var(--accent);font-size:12px;margin-top:10px;word-break:break-all;font-weight:500}
+
+textarea{
+  width:100%;min-height:60px;padding:12px 14px;
+  border:1px solid var(--border);border-radius:var(--radius-md);
+  font-size:13px;font-family:inherit;color:var(--ink);background:var(--surface-card);
+  resize:vertical;outline:none;line-height:1.6;
+}
+textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(59,184,138,.12)}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:8px 18px;border-radius:var(--radius-md);font-size:13px;font-weight:500;
+  font-family:inherit;cursor:pointer;border:1px solid var(--border);
+  background:var(--surface);color:var(--body);line-height:1;
+  transition:background .15s,border-color .15s;white-space:nowrap;height:36px;
+}
+.btn:hover{background:var(--accent-light);border-color:var(--accent)}
+.btn.small{padding:4px 12px;font-size:11px;height:28px}
+.btn.accent{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn.accent:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+.btn.accent:disabled{background:var(--border-soft);border-color:var(--border-soft);color:var(--muted-soft);cursor:not-allowed}
+.btn.full{width:100%;margin-top:8px}
+
+.action-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
+.dir-display{display:flex;align-items:center;gap:8px;font-size:12px;overflow:hidden;min-width:0}
+.dir-label{color:var(--muted-soft);flex-shrink:0;font-size:11px}
+#dir-path{color:var(--body);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100px;font-size:12px}
+.action-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.status-text{font-size:11px;color:var(--muted-soft)}
+
+#progress-row{display:flex;align-items:center;gap:10px}
+.progress-bar{flex:1;height:4px;background:var(--border-soft);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:var(--accent);border-radius:2px;transition:width .25s}
+#lbl-percent{font-size:11px;color:var(--muted);width:34px;text-align:right;font-weight:500}
+
+.log-card{flex:1;min-height:140px;display:flex;flex-direction:column;background:var(--surface-dark);border-color:var(--surface-dark)}
+.log-card .card-label{color:rgba(255,255,255,.45)}
+.log-content{flex:1;overflow-y:auto;font-size:12px;font-family:"JetBrains Mono","SF Mono","Fira Code","Consolas",monospace;color:rgba(255,255,255,.6);white-space:pre-wrap;word-break:break-all;max-height:220px;line-height:1.7}
+.log-content .dim{color:rgba(255,255,255,.35)}
+.log-content .info{color:#7bc8e0}
+.log-content .success{color:#6dd49e}
+.log-content .error{color:#f2776e}
+.log-content .warn{color:#e8c96a}
+.log-content .highlight{color:#f2ae72}
+</style></head><body><div id="app">
+<header><span class="logo">&#x2702;</span><span class="brand">FavsSnap</span><span class="subtitle">剪藏</span></header>
+<section id="setup-card" class="card hidden"><div class="card-icon">&#x1F4C1;</div><h3>欢迎使用 FavsSnap</h3><p>请选择文章的本地保存目录</p><button id="setup-btn" class="btn accent full">选择保存目录</button><p id="setup-path" class="path-hint hidden"></p></section>
+<div id="main-ui">
+<section class="card"><div class="card-label">文章链接<span class="hint">每行一条</span></div><textarea id="txt-urls" placeholder="在此粘贴文章链接，支持批量（每行一条）"></textarea></section>
+<section class="action-bar"><div class="dir-display"><span class="dir-label">保存至</span><span id="dir-path" title="">—</span><button id="change-dir-btn" class="btn small">修改</button></div><div class="action-right"><span id="lbl-status" class="status-text">就绪</span><button id="btn-start" class="btn accent">开始抓取</button></div></section>
+<div id="progress-row" class="hidden"><div class="progress-bar"><div id="progress-fill" class="progress-fill" style="width:0%"></div></div><span id="lbl-percent">0%</span></div>
+<section class="card log-card"><div class="card-label">运行日志</div><div id="txt-log" class="log-content"></div></section>
+</div></div><script src="sidepanel.js"></script></body></html>
