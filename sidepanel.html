@@ -36,7 +36,7 @@ body{
 #app{padding:24px 18px;display:flex;flex-direction:column;gap:28px}
 
 header{display:flex;align-items:center;gap:10px;padding-bottom:2px}
-.logo{font-size:20px;line-height:1}
+.logo{width:28px;height:28px;display:block}
 .brand{font-family:Georgia,"Times New Roman",serif;font-size:20px;font-weight:400;color:var(--ink);letter-spacing:-0.3px}
 .subtitle{font-size:11px;color:var(--muted-soft);font-weight:500;letter-spacing:0.5px;text-transform:uppercase}
 
@@ -95,7 +95,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(59,184,138,.
 .log-content .warn{color:#e8c96a}
 .log-content .highlight{color:#f2ae72}
 </style></head><body><div id="app">
-<header><span class="logo">&#x2702;</span><span class="brand">FavsSnap</span><span class="subtitle">剪藏</span></header>
+<header><img class="logo" src="icon-32.png" alt="FavsSnap"><span class="brand">FavsSnap</span><span class="subtitle">剪藏</span></header>
 <section id="setup-card" class="card hidden"><div class="card-icon">&#x1F4C1;</div><h3>欢迎使用 FavsSnap</h3><p>请选择文章的本地保存目录</p><button id="setup-btn" class="btn accent full">选择保存目录</button><p id="setup-path" class="path-hint hidden"></p></section>
 <div id="main-ui">
 <section class="card"><div class="card-label">文章链接<span class="hint">每行一条</span></div><textarea id="txt-urls" placeholder="在此粘贴文章链接，支持批量（每行一条）"></textarea></section>
